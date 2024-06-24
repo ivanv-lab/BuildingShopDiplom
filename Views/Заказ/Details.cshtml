@@ -1,0 +1,121 @@
+﻿@model BuildingShop.Models.Заказ
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+@if (!String.IsNullOrEmpty((string)Session["Notification"]))
+{
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Уведомление</strong>
+                <small>@DateTime.Now.ToShortTimeString()</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @Session["Notification"]
+            </div>
+        </div>
+    </div>
+    Session.Remove("Notification");
+}
+<script src="~/Scripts/Custom/NotificationScript.js"></script>
+<script src="~/Scripts/Custom/Order/OrderDetailsScript.js"></script>
+
+<h2>Детальная информация</h2>
+
+<div>
+    <h4>Заказ №@Model.id</h4>
+    <hr />
+    <button class="my-custom-button" onclick="window.print();">Печать</button>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Готовность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Готовность)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Дата.ToString("dd.MM.yyyy"))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сумма)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сумма)
+        </dd>
+
+        <dt>
+            Клиент
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиент.ФИО)
+        </dd>
+
+        <dt>
+            Сотрудник
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудник.ФИО)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.id }, new { @class = "my-custom-link" })
+        @Html.ActionLink("Назад", "Index", new { }, new { @class = "my-custom-link" })
+    </p>
+    <p>
+        @Html.ActionLink("Добавить товар в заказ", "../Список_товаров/Create", new { id = Model.id }, new { @class = "my-custom-link" })
+    </p>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Товар
+                </th>
+                <th>
+                    Кол-во
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Список_товаров)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Товар.id)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Товар.Наименование)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Кол_во)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Цена)
+                    </th>
+                    <th>
+                        @Html.ActionLink("Удалить", "../Список_товаров/Delete", new { id = item.id }, new { @class = "my-custom-link" })
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

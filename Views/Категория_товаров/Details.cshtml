@@ -1,0 +1,26 @@
+﻿@model BuildingShop.Models.Категория_товаров
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детальная информация</h2>
+
+<div>
+    <h4>Категория товаров №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.id }, new {@class="my-custom-link"})
+    @Html.ActionLink("Назад", "Index",new { }, new { @class = "my-custom-link" })
+</p>

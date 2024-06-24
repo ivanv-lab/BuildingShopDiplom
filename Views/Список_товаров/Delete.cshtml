@@ -1,0 +1,52 @@
+﻿@model BuildingShop.Models.Список_товаров
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id_заказа)
+}
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот пункт заказа?</h3>
+<div>
+    <h4>Пункт заказа №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Товар.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Товар.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Кол_во)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Кол_во)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цена)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цена)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="my-custom-button" />
+            @Html.ActionLink("Назад", "../Заказ/Details", new { @id = ViewData.Model.id_заказа }, new { @class = "my-custom-link" })
+        </div>
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@model BuildingShop.Models.Товар
+
+@{
+    ViewBag.Title = "Детали";
+}
+
+<h2>Детальная информация</h2>
+
+<div>
+    <h4>Товар №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Описание)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Описание)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цена)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цена)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model=>model.Количество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model=>model.Количество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model=>model.Производитель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model=>model.Производитель)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Страна_производитель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Страна_производитель)
+        </dd>
+
+        <dt>
+            Категория
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Категория_товаров.Наименование)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.id }, new { @class = "my-custom-link" })
+    @Html.ActionLink("Назад", "Index",new { }, new { @class = "my-custom-link" })
+</p>

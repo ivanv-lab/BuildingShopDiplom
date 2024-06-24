@@ -1,0 +1,47 @@
+﻿@model BuildingShop.Models.Сотрудник
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этого сотрудника?</h3>
+<div>
+    <h4>Сотрудник №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_телефона)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_телефона)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="my-custom-button" />
+            @Html.ActionLink("Назад", "Index", new {}, new { @class = "my-custom-link" })
+        </div>
+    }
+</div>

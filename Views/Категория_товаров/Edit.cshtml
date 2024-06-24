@@ -1,0 +1,40 @@
+﻿@model BuildingShop.Models.Категория_товаров
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h2>Редактирование категории</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>№@Model.id</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Наименование, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Наименование, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Наименование, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <p>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Сохранить" class="my-custom-button" />
+                    @Html.ActionLink("Назад", "Index", new { }, new { @class = "my-custom-link" })
+                </div>
+            </div>
+        </p>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

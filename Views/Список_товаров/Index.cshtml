@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BuildingShop.Models.Список_товаров>
+
+@{
+    ViewBag.Title = "Список товаров";
+}
+
+<script src="~/Scripts/Custom/NotificationScript.js"></script>
+<script src="~/Scripts/Custom/LoaderScript.js"></script>
+
+<div class="loader"></div>
+
+<h2>Список товаров</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Кол_во)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Цена)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Заказ.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Товар.Наименование)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Кол_во)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Цена)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Заказ.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Товар.Наименование)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

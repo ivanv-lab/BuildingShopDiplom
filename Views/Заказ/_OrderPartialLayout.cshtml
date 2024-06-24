@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<BuildingShop.Models.Заказ>
+@using PagedList.Mvc;
+
+<div class="table-responsive">
+    <table class="table" , id="NewTableId">
+        <tr>
+            <th>
+                @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.IdSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Готовность", "Index", new { sortOrder = ViewBag.DoneSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Дата", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Сумма", "Index", new { sortOrder = ViewBag.SumSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Клиент", "Index", new { sortOrder = ViewBag.ClientSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Сотрудник", "Index", new { sortOrder = ViewBag.EmployeeSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Готовность)
+                </td>
+                <td>
+                    @Html.Raw(item.Дата.ToString("dd.MM.yyyy"))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Сумма)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Клиент.ФИО)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Сотрудник.ФИО)
+                </td>
+                <td>
+                    <ul class="navbar-nav d-print-none">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle my-custom-button text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item">@Html.ActionLink("Редактировать", "Edit", new { id = item.id }, new { @class = "my-custom-link", @style = "width:100%; text-align:center;" })</a>
+                                <a class="dropdown-item">@Html.ActionLink("Детали", "Details", new { id = item.id }, new { @class = "my-custom-link", @style = "width:100%; text-align:center;" })</a>
+                                <a class="dropdown-item">@Html.ActionLink("Удалить", "Delete", new { id = item.id }, new { @class = "my-custom-link", @style = "width:100%; text-align:center;" })</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="d-print-none">
+    Страница @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

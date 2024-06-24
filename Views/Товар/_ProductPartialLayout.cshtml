@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<BuildingShop.Models.Товар>
+@using PagedList.Mvc;
+
+<div class="table-responsive">
+    <table class="table" , id="NewTableId">
+        <tr>
+            <th>
+                @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.IdSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Наименование", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Описание", "Index", new { sortOrder = ViewBag.DescSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Цена", "Index", new { sortOrder = ViewBag.PriceSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Количество", "Index", new { sortOrder = ViewBag.CountSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Страна-производитель", "Index", new { sortOrder = ViewBag.CountrySortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Категория", "Index", new { sortOrder = ViewBag.CatSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Производитель", "Index", new { sortOrder = ViewBag.ManufSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Наименование)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Описание)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Цена)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Количество)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Страна_производитель)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Категория_товаров.Наименование)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Производитель)
+                </td>
+                <td>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle my-custom-button text-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item">@Html.ActionLink("Редактировать", "Edit", new { id = item.id }, new { @class = "my-custom-link", @style = "width:100%; text-align:center;" })</a>
+                                    <a class="dropdown-item">@Html.ActionLink("Удалить", "Delete", new { id = item.id }, new { @class = "my-custom-link", @style = "width:100%;text-align:center;" })</a>
+                                </div>
+                            </li>
+                        </ul>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="d-print-none">
+    Страница @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

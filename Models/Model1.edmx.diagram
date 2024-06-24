@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0055a303105b4fd7b5ee2da0c043d7d4" Name="Diagram1">
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Заказ" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Категория_товаров" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Клиент" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Сотрудник" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Список_товаров" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomBuildingShopModel.Товар" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="DiplomBuildingShopModel.FK__Заказ__id_клиент__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomBuildingShopModel.FK__Заказ__id_сотруд__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomBuildingShopModel.FK__Список_то__id_за__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomBuildingShopModel.FK__Товар__id_катего__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomBuildingShopModel.FK__Список_то__id_то__30F848ED" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

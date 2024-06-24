@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="~/Scripts/Custom/LoadPageshowScript.js"></script>
+</head>
+<body>
+    @if (!String.IsNullOrEmpty((string)Session["Notification"]))
+    {
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Уведомление</strong>
+                    <small>@DateTime.Now.ToShortTimeString()</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    @Session["Notification"]
+                </div>
+            </div>
+        </div>
+        Session.Remove("Notification");
+    }
+    <div class="loader"></div>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Главная", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Клиенты", "Index", "Клиент", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Заказы", "Index", "Заказ", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Категории товаров", "Index", "Категория_товаров", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Сотрудники", "Index", "Сотрудник", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Товары", "Index", "Товар", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - <a href="https://github.com/ivanv-lab">Возисов И.А.</a></p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Custom/LoaderScript.js"></script>
+</body>
+</html>

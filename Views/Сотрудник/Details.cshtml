@@ -1,0 +1,41 @@
+﻿@model BuildingShop.Models.Сотрудник
+
+@{
+    ViewBag.Title = "Делати";
+}
+
+<h2>Детальная информация</h2>
+
+<div>
+    <h4>Сотрудник №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_телефона)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_телефона)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.id }, new {@class="my-custom-link"})
+    @Html.ActionLink("Назад", "Index", new {}, new { @class = "my-custom-link" })
+</p>

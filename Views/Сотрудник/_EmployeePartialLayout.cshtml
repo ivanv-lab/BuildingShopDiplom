@@ -1,0 +1,51 @@
+﻿@model PagedList.IPagedList<BuildingShop.Models.Сотрудник>
+@using PagedList.Mvc;
+
+<div class="table-responsive">
+    <table class="table" , id="NewTableId">
+        <tr>
+            <th>
+                @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.IdSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("ФИО", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                @Html.ActionLink("Адрес", "Index", new { sortOrder = ViewBag.AddressSortParm }, new { @class = "my-custom-button" })
+            </th>
+            <th>
+                Номер телефона
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ФИО)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Адрес)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Номер_телефона)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.id }, new { @class = "my-custom-link" })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.id }, new { @class = "my-custom-link" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="d-print-none">
+    Страница @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

@@ -1,0 +1,125 @@
+﻿/* Set padding to keep content from hitting the edges */
+body{
+    display: none;
+}
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+td,th{
+    vertical-align:middle;
+    text-align:center;
+}
+
+.my-custom-link {
+    color: #007bff;
+    text-decoration: none;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    border:none;
+}
+
+.my-custom-link:hover {
+    background-color: #e9ecef;
+    color: #343a40;
+}
+
+.my-custom-button {
+    color: #007bff;
+    text-decoration: none;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border:none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.my-custom-button:hover {
+    background-color: #e9ecef;
+    color: #343a40;
+}
+
+.my-custom-checkbox {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px #ced4da;
+    width: 20px;
+    height: 20px;
+}
+
+    .my-custom-checkbox:hover {
+        background-color: #e9ecef;
+    }
+
+    .my-custom-checkbox:checked {
+        background-color: #007bff;
+    }
+
+.my-custom-header {
+    color: #0d6efd;
+    text-align: center;
+    padding: 20px;
+    font-size: 44px;
+    border-radius: 10px;
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: white url('../Content/LoadingImage/loadingImage.png') 50% 50% no-repeat;
+}
+
+@media print {
+    body{
+        margin-left:-10cm;
+        color:#000;
+        background-color:#fff;
+        display:none;
+    }
+    header, footer, .navbar,.my-custom-link{
+        display:none;
+    }
+    #content{
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:100%;
+    }
+    @page {
+        size: landscape;
+        margin-left: -3cm;
+    }
+    .table-responsive {
+        overflow-x: visible !important;
+        display: block !important;
+    }
+    table{
+        transform: scale(0.8);
+        transform-origin:top left;
+    }
+}

@@ -1,0 +1,117 @@
+﻿@model BuildingShop.Models.Товар
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот товар?</h3>
+<div>
+    <h4>Товар №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Описание)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Описание)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цена)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цена)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Производитель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Производитель)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Страна_производитель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Страна_производитель)
+        </dd>
+
+        <dt>
+            Категория
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Категория_товаров.Наименование)
+        </dd>
+
+        <dt>
+            Изображение
+        </dt>
+
+        <dd>
+            <div id="imgDiv" class="card-img mt-3">
+                <img src=@Url.Content("~/ProductImages/" + Model.id + ".jpg") style="max-height:300px;max-width:300px;" />
+            </div>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="my-custom-button" />
+            @Html.ActionLink("Назад", "Index", new { }, new { @class = "my-custom-link" })
+        </div>
+    }
+</div>
+
+
+
+<script>
+function checkImageExists(image_url, callback) {
+    var img = new Image();
+    img.onerror = function () {
+        callback(false);
+    };
+    img.onload = function () {
+        callback(true);
+    };
+    img.src = image_url;
+}
+
+let img = "@Url.Content("~/ProductImages/" + Model.id + ".jpg")"
+console.log(img.src);
+
+checkImageExists(img, function (exists) {
+    if (exists) {
+        console.log("Изображение существует");
+    } else {
+        document.getElementById('imgDiv').style.display = 'none';
+    }
+});
+</script>

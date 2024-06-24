@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<BuildingShop.Models.Товар>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Товары";
+}
+
+<script src="~/Scripts/Custom/NotificationScript.js"></script>
+<script src="~/Scripts/Custom/LoaderScript.js"></script>
+
+<div class="loader"></div>
+
+<h2>Товары</h2>
+
+<p>
+    @Html.ActionLink("Добавить товар", "Create", new { }, new { @class = "my-custom-link" })
+    <button class="my-custom-link" onclick="window.print();">Печать</button>
+</p>
+
+@using (Ajax.BeginForm("ProductPartialView", "Товар",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divProducts"
+    }, new
+    {
+        id = "NewTableId"
+    }
+    ))
+{
+    <p>
+        Поиск: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @id = "searchInput", @oninput = "performSearch()", @class = "form-control" })
+    </p>
+}
+<div id="divProducts">
+    @Html.Action("ProductPartialView")
+    @Html.Raw(ViewBag.Data)
+</div>
+
+
+
+<script>
+        function performSearch() {
+    var searchString = $("#searchInput").val();
+    if (searchString.length > 0) {
+        $.ajax({
+            url: '@Url.Action("ProductPartialView", "Товар")',
+            type: 'POST',
+            data: { searchString: searchString },
+            success: function (data) {
+                $('#divProducts').html(data);
+                $('.loader').fadeOut();
+            }
+        });
+    } else {
+        $('#divProducts').load('@Url.Action("ProductPartialView", "Товар")');
+    }
+};
+</script>

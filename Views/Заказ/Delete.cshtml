@@ -1,0 +1,64 @@
+﻿@model BuildingShop.Models.Заказ
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить этот заказ?</h3>
+<div>
+    <h4>Заказ №@Model.id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Готовность)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Готовность)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сумма)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сумма)
+        </dd>
+
+        <dt>
+            Клиент
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиент.ФИО)
+        </dd>
+
+        <dt>
+            Сотрудник
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сотрудник.ФИО)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="my-custom-button" />
+            @Html.ActionLink("Назад", "Index", new {}, new { @class = "my-custom-link" })
+        </div>
+    }
+</div>
